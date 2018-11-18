@@ -1,0 +1,41 @@
+server:
+  port: 9898
+  context-path: /singlesignon
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9191/eureka/
+    
+spring:
+  profiles:
+    active: dev
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/usercampeao?createDatabaseIfNotExist=true&&useSSL=false
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+      
+logging:
+  level:
+#    root: DEBUG
+    org:
+#      springframework.web: TRACE
+      hibernate:
+        SQL: DEBUG
+        type.descriptor.sql.BasicBinder: TRACE
+
+flyway:
+  baselineOnMigrate: true
